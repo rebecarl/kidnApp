@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+	 <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="../static/styles.css" rel="stylesheet" type="text/css" th:href="@{/styles.css}" media="screen"/>
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Lato|Roboto+Slab');
+	</style>
+	
+	<title>Welcome to the KidnApp!</title>
+	</head>
+	
+	<body>
+	
+	<div class="container-fluid">
+	
+	<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center" id="banner" style="background-color:#66CC99">
+			<h1>Welcome to the KidnApp!</h1>
+		</div>
+	
+	
+	<div>
+	<h4><em>The purpose of this application is to allow quick and accurate comparisons between drugs and a patient's measured or estimated renal function (as eGFR or CrCl). 
+	Please keep in mind this tool is meant to be used to better guide decision-making for healthcare providers, and not as a definitive recommendation for a given patient. Please refer to the associated references for more context.
+	To use, enter the patient's renal function and select a drug in question from the list below. Note that the list is not exhaustive.</em></h4></div>
+	
+		
+		<div class="row">
+			<div class="col-sm-6">
+		<form method="post" th:action="@{/app/}" th:object="${form}">
+	    <div class="form-group">        
+	            <label for="GFRform">GFR:</label>
+	            <p th:if="${#fields.hasErrors('gfr')}" th:errors="*{gfr}"></p>
+	            <input type="number" class="form-control" id="GFRform" aria-describedby="GFRhelp" placeholder="Enter GFR" th:field="*{Gfr}" />
+	            <small id="GFRHelp" class="form-text text-muted">Please enter a value between 0-140mL/min.</small>
+	            </div>
+	            <br>
+		        <div class="form-group"> 
+				<label for="drugId">Drug Name:</label>
+				<select class="form-control" id="drugId" th:field="*{drugId}" > 
+				    <option value="0">Select Drug</option>
+				    <option th:each="drug : ${drugs}" th:value="${drug.id}" th:text="${drug.drugName}"></option>
+			    </select>
+			    <p th:if="${#fields.hasErrors('drugId')}" th:errors="*{drugId}"></p>
+			    </div>
+			    
+			    
+			    
+	            <button type="submit" class="btn btn-primary">Enter</button>
+	            
+	        </form>
+	        </div>
+			
+		<div class="col-sm-6">
+		<table>
+			<tr class="table-info">
+				<th th:text= ${noChange}>
+			</tr>
+			<tr class="table-warning">
+				<th th:text= ${notes}>
+			</tr>
+			<tr class="table-light">
+			<th th:text= ${references}>
+			</tr>
+		</table>
+		</div>
+		
+		</div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	
+	<br>
+	<br>
+	<br>
+	<div>
+		<p>Developed by Rebecca Carlson, 2019, under the guidance of Saskatoon, SK's <a href="http://www.comit.org/" target="_blank">ComIT</a> course.</p>
+	</div>
+	</div>
+	</body>
+	
+</html>

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: rebec
+Build-Jdk: 11.0.2
+Implementation-Title: comITproject
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: comIT
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/comITproject
+Created-By: Maven Integration for Eclipse
+
